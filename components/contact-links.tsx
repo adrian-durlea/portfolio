@@ -20,10 +20,12 @@ const contactLinks = [
 
 export function ContactLinks() {
   return (
-    <ul className="divide-y divide-border border-y border-border">
+    <ul className="schematic-panel divide-y divide-border">
       {contactLinks.map((link) => (
-        <li key={link.label} className="py-5">
-          <p className="text-sm font-medium text-muted">{link.label}</p>
+        <li key={link.label} className="px-5 py-5">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-accent">
+            {link.label}
+          </p>
           <a
             className="mt-1 block break-words text-base font-medium underline"
             href={link.href}

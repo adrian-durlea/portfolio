@@ -6,7 +6,7 @@ type ExperienceItemProps = {
 
 export function ExperienceItem({ experience }: ExperienceItemProps) {
   return (
-    <article className="border border-border p-5">
+    <article className="schematic-panel p-5">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold">{experience.position}</h2>
@@ -21,7 +21,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
             </a>
           </p>
         </div>
-        <p className="text-sm text-muted">
+        <p className="font-mono text-xs text-muted">
           {experience.startDate} - {experience.endDate ?? "Present"}
         </p>
       </div>
@@ -35,7 +35,7 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         {experience.technologies.map((technology) => (
           <span
             key={technology}
-            className="border border-border px-2 py-1 text-xs text-muted"
+            className="border border-border bg-accent-soft/40 px-2 py-1 font-mono text-xs text-accent"
           >
             {technology}
           </span>

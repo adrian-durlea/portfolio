@@ -16,6 +16,9 @@ export function SectionHeading({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          Module
+        </p>
         <h2 id={id} className="text-2xl font-semibold tracking-normal">
           {title}
         </h2>
@@ -25,7 +28,11 @@ export function SectionHeading({
           </p>
         ) : null}
       </div>
-      {action ? <div className="text-sm font-medium underline">{action}</div> : null}
+      {action ? (
+        <div className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-accent underline">
+          {action}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #525252;
-  --border: #e5e5e5;
+  --background: #08090b;
+  --foreground: #f2f4f7;
+  --muted: #9ca3af;
+  --border: #2a2f38;
+  --surface: #111318;
+  --surface-strong: #191d24;
+  --accent: #8fb3ff;
+  --accent-soft: #1b2438;
 }
 
 @theme inline {
@@ -12,6 +16,10 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -26,16 +34,62 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--background);
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 20% 0%, rgba(143, 179, 255, 0.1), transparent 30rem),
+    var(--background);
+  background-size: 32px 32px, 32px 32px, auto, auto;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 a {
   text-underline-offset: 0.2em;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+a:hover {
+  color: var(--accent);
 }
 
 ::selection {
-  background: #171717;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--background);
+}
+
+.schematic-panel {
+  position: relative;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    var(--surface);
+  background-size: 24px 24px;
+}
+
+.schematic-panel::before,
+.schematic-panel::after {
+  position: absolute;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-color: var(--accent);
+  content: "";
+}
+
+.schematic-panel::before {
+  left: -1px;
+  top: -1px;
+  border-left: 1px solid;
+  border-top: 1px solid;
+}
+
+.schematic-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
 }
