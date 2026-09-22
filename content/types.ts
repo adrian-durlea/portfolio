@@ -14,9 +14,11 @@ export type Project = {
   category: string;
   githubUrl?: string;
   demoUrl?: string;
+  devpostUrl?: string;
+  role?: string;
+  award?: string;
   images: ProjectImage[];
-  startDate: string;
-  endDate: string | null;
+  timeline?: string;
   keyAccomplishments: string[];
   featured: boolean;
 };
@@ -29,7 +31,7 @@ export type Experience = {
   description: string;
   accomplishments: string[];
   technologies: string[];
-  organizationUrl: string;
+  organizationUrl?: string;
 };
 
 export type SkillCategory = {

@@ -9,16 +9,16 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
     <article className="schematic-panel p-5">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold">{experience.position}</h2>
+          <h3 className="text-lg font-semibold">{experience.position}</h3>
           <p className="text-sm text-muted">
-            <a
+            {experience.organizationUrl ? <a
               className="underline"
               href={experience.organizationUrl}
               target="_blank"
               rel="noreferrer"
             >
               {experience.organization}
-            </a>
+            </a> : experience.organization}
           </p>
         </div>
         <p className="font-mono text-xs text-muted">

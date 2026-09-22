@@ -1,136 +1,48 @@
-import Link from "next/link";
 import { Container } from "@/components/container";
 import { ExperienceItem } from "@/components/experience-item";
-import { ProjectCard } from "@/components/project-card";
-import { SectionHeading } from "@/components/section-heading";
+import { ProjectRail } from "@/components/project-rail";
+import { Reveal } from "@/components/reveal";
 import { experiences } from "@/content/experience";
 import { projects } from "@/content/projects";
 import { siteConfig } from "@/content/site";
 import { skillCategories } from "@/content/skills";
 
 export default function Home() {
-  const featuredProjects = projects.filter((project) => project.featured);
-  const selectedExperience = experiences.slice(0, 2);
-
   return (
-    <>
-      <section className="border-b border-border bg-background/55">
-        <Container className="grid gap-10 py-16 sm:py-24 lg:grid-cols-[1fr_360px] lg:items-center">
-          <div className="max-w-3xl">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
-              Engineering portfolio / Rev A
-            </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
-              {siteConfig.name}
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-muted">
-              {siteConfig.introduction}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                className="border border-accent bg-accent px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.12em] text-background hover:bg-transparent hover:text-accent"
-                href={siteConfig.links.resume}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Resume
-              </a>
-              <a
-                className="border border-border bg-surface px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.12em] text-foreground hover:border-accent hover:text-accent"
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                className="border border-border bg-surface px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.12em] text-foreground hover:border-accent hover:text-accent"
-                href={siteConfig.links.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
+    <Container className="home-content">
+      <section id="about" className="hero" aria-labelledby="intro-title">
+        <p className="eyebrow">Mechatronics & Robotics · Queen’s University</p>
+        <h1 id="intro-title">Hi, I’m<br /><span>{siteConfig.name}.</span></h1>
+        <p className="hero-description">{siteConfig.introduction}</p>
+        <p className="mt-4 text-sm text-muted">{siteConfig.education} · {siteConfig.educationPeriod}</p>
+        <div className="flex flex-wrap gap-3 mt-8">
+          <a className="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
+          <a className="button" href={siteConfig.links.resume} target="_blank" rel="noreferrer">Resume ↗</a>
+        </div>
+        <div className="hero-bottom">
+          <div className="flex gap-6 text-sm text-muted">
+            <a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href={siteConfig.links.devpost} target="_blank" rel="noreferrer">Devpost ↗</a>
           </div>
-
-          <div className="schematic-panel p-5" aria-label="Portfolio schematic">
-            <div className="mb-5 flex items-center justify-between font-mono text-xs uppercase tracking-[0.14em] text-accent">
-              <span>System Map</span>
-              <span>Static</span>
-            </div>
-            <div className="space-y-4">
-              {[
-                "Projects",
-                "Experience",
-                "Skills",
-                "Resume",
-                "Contact",
-              ].map((node, index) => (
-                <div key={node} className="flex items-center gap-3">
-                  <span className="h-2 w-2 border border-accent bg-background" />
-                  <span className="h-px flex-1 bg-border" />
-                  <span className="w-28 border border-border bg-background/70 px-3 py-2 font-mono text-xs uppercase tracking-[0.12em] text-muted">
-                    {String(index + 1).padStart(2, "0")} {node}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
+          <a href="#projects" className="text-sm text-muted">Scroll to discover <span className="inline-block ml-3" aria-hidden="true">↓</span></a>
+        </div>
       </section>
-
-      <Container className="space-y-16 py-12 sm:py-16">
-        <section aria-labelledby="featured-projects">
-          <SectionHeading
-            id="featured-projects"
-            title="Featured Projects"
-            description="A starting point for engineering, controls, robotics, embedded, and software work."
-            action={<Link href="/projects">View all projects</Link>}
-          />
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="selected-experience">
-          <SectionHeading
-            id="selected-experience"
-            title="Selected Experience"
-            description="Internships, roles, and technical involvement can be edited in the content files."
-            action={<Link href="/experience">View all experience</Link>}
-          />
-          <div className="mt-6 space-y-5">
-            {selectedExperience.map((experience) => (
-              <ExperienceItem
-                key={`${experience.organization}-${experience.position}`}
-                experience={experience}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="skills-overview">
-          <SectionHeading
-            id="skills-overview"
-            title="Skills & Technologies"
-            description="Grouped by practical engineering and software categories."
-            action={<Link href="/skills">View skills</Link>}
-          />
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {skillCategories.map((category) => (
-              <div key={category.name} className="schematic-panel p-5">
-                <h3 className="font-medium">{category.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">
-                  {category.skills.slice(0, 5).join(", ")}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </Container>
-    </>
+      <section id="projects" className="home-section" aria-labelledby="projects-title">
+        <Reveal><div className="section-intro"><p className="eyebrow">01 / Selected work</p><h2 id="projects-title">A few things I’ve built.</h2><p>From embedded systems to the web. Select a project for a closer look.</p></div></Reveal>
+        <ProjectRail projects={projects} />
+      </section>
+      <section id="experience" className="home-section" aria-labelledby="experience-title">
+        <Reveal><div className="section-intro"><p className="eyebrow">02 / Experience</p><h2 id="experience-title">Learning by doing.</h2><p>Engineering experience, collaboration, and hands-on problem solving.</p></div></Reveal>
+        <div className="experience-list">{experiences.map(experience => <Reveal key={experience.organization + experience.position}><ExperienceItem experience={experience} /></Reveal>)}</div>
+      </section>
+      <section id="skills" className="home-section" aria-labelledby="skills-title">
+        <Reveal><div className="section-intro"><p className="eyebrow">03 / Toolkit</p><h2 id="skills-title">Tools I work with.</h2><p>Across software, hardware, and everything in between.</p></div></Reveal>
+        <div>{skillCategories.map(category => <Reveal key={category.name}><div className="skill-row"><h3>{category.name}</h3><div className="flex flex-wrap gap-2">{category.skills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></div></Reveal>)}</div>
+      </section>
+      <section id="contact" className="home-section contact-section" aria-labelledby="contact-title">
+        <Reveal><p className="eyebrow">04 / Get in touch</p><h2 id="contact-title">Let’s build something<br /><span className="text-muted">worth talking about.</span></h2><p className="mt-6 max-w-lg text-muted leading-7">Have a role, a project, or an idea in mind? I’d love to hear from you.</p><a className="button button-primary mt-8" href={`mailto:${siteConfig.links.email}`}>Say hello ↗</a><div className="flex flex-wrap gap-6 mt-8 text-sm text-muted"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${siteConfig.links.email}`}>{siteConfig.links.email}</a></div></Reveal>
+      </section>
+    </Container>
   );
 }
