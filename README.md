@@ -46,7 +46,6 @@ Main routes:
 - `/`
 - `/about`
 - `/projects`
-- `/experience`
 - `/skills`
 - `/contact`
 
@@ -80,15 +79,7 @@ Each project supports title, descriptions, technologies, category, URLs, images,
 
 Add or edit objects in the exported `projects` array. Mark `featured: true` to show a project on the homepage.
 
-## Editing Experience
-
-Experience entries are stored in:
-
-```text
-content/experience.ts
-```
-
-Each entry supports organization, position, dates, description, accomplishments, technologies/tools, and organization URL.
+Work experience is available in the linked resume.
 
 ## Editing Skills
 

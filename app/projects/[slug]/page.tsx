@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ProjectGallery } from "@/components/project-gallery";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
@@ -25,7 +25,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       <header className="mt-14 max-w-3xl"><p className="eyebrow">{project.category}</p><h1 className="mt-4 text-4xl sm:text-6xl font-medium tracking-tight">{project.title}</h1><p className="mt-6 text-lg leading-8 text-muted">{project.shortDescription}</p></header>
       {project.award && <p className="mt-6 text-sm text-accent">{project.award}</p>}
       {(project.timeline || project.technologies.length > 0) && <div className="detail-meta">{project.timeline && <div><p className="eyebrow mb-3">Event</p><p className="text-sm">{project.timeline}</p></div>}{project.technologies.length > 0 && <div><p className="eyebrow mb-3">Tools & technologies</p><div className="flex flex-wrap gap-2">{project.technologies.map(technology => <span className="tag" key={technology}>{technology}</span>)}</div></div>}</div>}
-      {project.images.map(image => <Image key={image.src} className="my-8 rounded-xl w-full h-auto" src={image.src} alt={image.alt} width={image.width ?? 1200} height={image.height ?? 675} />)}
+      <ProjectGallery images={project.images} title={project.title} />
       <section className="max-w-3xl mt-12"><h2 className="text-2xl font-medium">Overview</h2><p className="mt-5 leading-8 text-muted">{project.detailedDescription}</p></section>
       {project.role && <section className="max-w-3xl mt-12"><h2 className="text-2xl font-medium">My contribution</h2><p className="mt-5 leading-8 text-muted">{project.role}</p></section>}
       {project.keyAccomplishments.length > 0 && <section className="max-w-3xl mt-12"><h2 className="text-2xl font-medium">Highlights</h2><ul className="mt-5 list-disc pl-5 space-y-4 leading-7 text-muted">{project.keyAccomplishments.map(item => <li key={item}>{item}</li>)}</ul></section>}

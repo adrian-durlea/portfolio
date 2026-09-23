@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
+import { siteConfig } from "@/content/site";
 
 export default function Page() {
-  redirect("/#experience");
+  redirect(siteConfig.links.resume);
 }

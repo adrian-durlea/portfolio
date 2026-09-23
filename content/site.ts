@@ -8,7 +8,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   links: {
     email: "adriandurlea23@gmail.com",
-    github: "https://github.com/BeepBoopEatPoop",
+    github: "https://github.com/adrian-durlea",
     linkedin: "https://www.linkedin.com/in/adrian-durlea-337ba52a9",
     devpost: "https://devpost.com/adriandurlea23",
     resume: "/resume.pdf",

@@ -1,8 +1,6 @@
 import { Container } from "@/components/container";
-import { ExperienceItem } from "@/components/experience-item";
 import { ProjectRail } from "@/components/project-rail";
 import { Reveal } from "@/components/reveal";
-import { experiences } from "@/content/experience";
 import { projects } from "@/content/projects";
 import { siteConfig } from "@/content/site";
 import { skillCategories } from "@/content/skills";
@@ -29,19 +27,15 @@ export default function Home() {
         </div>
       </section>
       <section id="projects" className="home-section" aria-labelledby="projects-title">
-        <Reveal><div className="section-intro"><p className="eyebrow">01 / Selected work</p><h2 id="projects-title">A few things I’ve built.</h2><p>From embedded systems to the web. Select a project for a closer look.</p></div></Reveal>
+        <Reveal><div className="section-intro"><p className="eyebrow">01 / Selected work</p><h2 id="projects-title">A few things I’ve built.</h2><p>Take a look at my projects.</p></div></Reveal>
         <ProjectRail projects={projects} />
       </section>
-      <section id="experience" className="home-section" aria-labelledby="experience-title">
-        <Reveal><div className="section-intro"><p className="eyebrow">02 / Experience</p><h2 id="experience-title">Learning by doing.</h2><p>Engineering experience, collaboration, and hands-on problem solving.</p></div></Reveal>
-        <div className="experience-list">{experiences.map(experience => <Reveal key={experience.organization + experience.position}><ExperienceItem experience={experience} /></Reveal>)}</div>
-      </section>
       <section id="skills" className="home-section" aria-labelledby="skills-title">
-        <Reveal><div className="section-intro"><p className="eyebrow">03 / Toolkit</p><h2 id="skills-title">Tools I work with.</h2><p>Across software, hardware, and everything in between.</p></div></Reveal>
-        <div>{skillCategories.map(category => <Reveal key={category.name}><div className="skill-row"><h3>{category.name}</h3><div className="flex flex-wrap gap-2">{category.skills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></div></Reveal>)}</div>
+        <Reveal><div className="section-intro"><p className="eyebrow">02 / Toolkit</p><h2 id="skills-title">Tools I work with.</h2><p>Across software, hardware, and everything in between.</p></div></Reveal>
+        <div>{skillCategories.filter(category => category.skills.length > 0).map(category => <div className="skill-row" key={category.name}><h3>{category.name}</h3><div className="flex flex-wrap gap-2">{category.skills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></div>)}</div>
       </section>
       <section id="contact" className="home-section contact-section" aria-labelledby="contact-title">
-        <Reveal><p className="eyebrow">04 / Get in touch</p><h2 id="contact-title">Let’s build something<br /><span className="text-muted">worth talking about.</span></h2><p className="mt-6 max-w-lg text-muted leading-7">Have a role, a project, or an idea in mind? I’d love to hear from you.</p><a className="button button-primary mt-8" href={`mailto:${siteConfig.links.email}`}>Say hello ↗</a><div className="flex flex-wrap gap-6 mt-8 text-sm text-muted"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${siteConfig.links.email}`}>{siteConfig.links.email}</a></div></Reveal>
+        <Reveal><p className="eyebrow">03 / Get in touch</p><h2 id="contact-title">Let’s build something<br /><span className="text-muted">worth talking about.</span></h2><p className="mt-6 max-w-lg text-muted leading-7">Have a role, a project, or an idea in mind? I’d love to hear from you.</p><a className="button button-primary mt-8" href={`mailto:${siteConfig.links.email}`}>Say hello ↗</a><div className="flex flex-wrap gap-6 mt-8 text-sm text-muted"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={`mailto:${siteConfig.links.email}`}>{siteConfig.links.email}</a></div></Reveal>
       </section>
     </Container>
   );
